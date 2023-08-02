@@ -28,6 +28,7 @@ public class CaloriesCounter {
                 double proteins = scanner.nextDouble();
                 Product newProduct = new Product(name,fats,carbs,proteins);
                 productCatalog.addProduct(newProduct);
+                //
 
         }
     }

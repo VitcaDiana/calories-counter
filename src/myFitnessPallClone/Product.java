@@ -18,6 +18,7 @@ public class Product {
     public double computeCalories(double fats,double carbs,double proteins){
         double calories = 0;
         calories = (9 * fats) + (4 * carbs) + (4 * proteins);
+        //System.out.println("Caloriile: " + calories);
         return calories;
     }
 

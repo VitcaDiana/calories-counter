@@ -13,6 +13,9 @@ public class ProductCatalog {
     }
 
     public void printProducts() {
+        if (numberOfProducts == 0){
+            System.out.println("Nu sunt produse in lista");
+        }
         for (int i = 0; i < numberOfProducts; i++) {
             System.out.println(products[i].toString());
         }
@@ -29,10 +32,12 @@ public class ProductCatalog {
         //daca se se afla sau am atins numarul maxim de produse
 
         if (isProductAdded(product) || maxNumberOfProducts == numberOfProducts) {
+            System.out.println("Produsul " + product.name + " nu poate fi adagat in lista");
             return false;
         } else {
             products[numberOfProducts] = product;
             numberOfProducts++;
+            System.out.println("Produsul " + product.name + " a fost adaugat in lista");
             return true;
         }
     }
@@ -47,7 +52,7 @@ public class ProductCatalog {
         if (numberOfProducts == 0){
             return false;
         }
-        for (int i = 0; i < products.length; i++) {
+        for (int i = 0; i < numberOfProducts; i++) {
             if (product.name.equals(products[i].name)) {
                 return true;
             }
@@ -55,41 +60,61 @@ public class ProductCatalog {
         return false;
     }
 
-//            if (product.equals(products[i])) {
-//                System.out.println("Produsul " + product.name + " se află deja în listă.");
-//                return false;
-//            }
-//        }
-//        if (numberOfProducts >= maxNumberOfProducts) {
-//            System.out.println("Lista este plina. Nu se pot adauga alte produse");
-//            return false;
-//        }
-//        products[numberOfProducts] = product;
-//        numberOfProducts++;
-//        System.out.println("Produsul " + product.name + " a fost adaugat in lista");
-//        return true;
-
 
 
     public Product getProductByName(String name) {
+        //parcurg lista si verific daca numele tastat se afla in lista
+        //daca il gasesc returnez produsul din lista care are numele egal cu cel primit de la tastatura
+        //daca nu afisez ca nu l-am gasit in lista
         for (int i = 0; i < numberOfProducts; i++) {
-            if (products[i].name.equals(name)) {
-                return products[i];
+            if (name.equals(products[i].name)) {
+                return products[i] ;
             }
-        }
-        //daca nu am gasit produsul in lista
 
+        }
+
+        //daca nu am gasit produsul in lista returnam null
+
+        System.out.println("Produsul nu se afla in lista");
         return null;
+
     }
+//    public int searchProductByName(String name){
+//        for (int i = 0; i< numberOfProducts;i++){
+//            if (product.name.equals(products[i].name)){
+//                return i;
+//            }
+//        }
+//       return -1;
+//
+//    }
 
     public boolean deleteProduct(String name) {
-        //int getProductByName = getProductByName(name);
+        // cautam produsul in lista in functie de nume
+        //daca nu am gasit produsul in lista returnam false
+        //altfel stergem produsul din lista si returnam true
+
+//        int productIndex = isProductAdded(products);
+//        if (productIndex == -1){
+//            System.out.println("Produsul nu se afla in lista ");
+//            return false;
+//        }else {
+//            for (int i = productIndex; i < numberOfProducts - 1; i++){
+//                products[i] = products[i + 1];
+//            }
+//            products[numberOfProducts - 1] = null;
+//            numberOfProducts--;
+//            System.out.println("Produsul a fost sters din lista");
+            return true;
 
 
-        return true;
+        }
+
+
+
 
     }
-}
+
 
 
 

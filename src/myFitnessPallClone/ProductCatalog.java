@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class ProductCatalog {
     Product[] products;
-    final int maxNumberOfProducts = 100;
+    final int maxNumberOfProducts = 4;
     int numberOfProducts;
 
     public ProductCatalog() {
@@ -13,7 +13,7 @@ public class ProductCatalog {
     }
 
     public void printProducts() {
-        if (numberOfProducts == 0){
+        if (numberOfProducts == 0) {
             System.out.println("Nu sunt produse in lista");
         }
         for (int i = 0; i < numberOfProducts; i++) {
@@ -49,7 +49,7 @@ public class ProductCatalog {
         //daca da, returnam true
         //return false
 
-        if (numberOfProducts == 0){
+        if (numberOfProducts == 0) {
             return false;
         }
         for (int i = 0; i < numberOfProducts; i++) {
@@ -61,59 +61,64 @@ public class ProductCatalog {
     }
 
 
-
     public Product getProductByName(String name) {
         //parcurg lista si verific daca numele tastat se afla in lista
         //daca il gasesc returnez produsul din lista care are numele egal cu cel primit de la tastatura
         //daca nu afisez ca nu l-am gasit in lista
         for (int i = 0; i < numberOfProducts; i++) {
             if (name.equals(products[i].name)) {
-                return products[i] ;
+                return products[i];
             }
-
         }
-
         //daca nu am gasit produsul in lista returnam null
-
         System.out.println("Produsul nu se afla in lista");
         return null;
 
     }
-//    public int searchProductByName(String name){
-//        for (int i = 0; i< numberOfProducts;i++){
-//            if (product.name.equals(products[i].name)){
-//                return i;
-//            }
-//        }
-//       return -1;
-//
-//    }
+
 
     public boolean deleteProduct(String name) {
+        //daca nu exista produse in lista afisez un mesaj
         // cautam produsul in lista in functie de nume
-        //daca nu am gasit produsul in lista returnam false
-        //altfel stergem produsul din lista si returnam true
+        //incepand cu pozitia unde l-am gasit mutam cu o pozitie la stanga
+        //  elementele de dupa  si scadem numarul de elemente din lista
+        //altfel afisam ca nu am gasit produsul in lista
 
-//        int productIndex = isProductAdded(products);
-//        if (productIndex == -1){
-//            System.out.println("Produsul nu se afla in lista ");
-//            return false;
-//        }else {
-//            for (int i = productIndex; i < numberOfProducts - 1; i++){
-//                products[i] = products[i + 1];
-//            }
-//            products[numberOfProducts - 1] = null;
-//            numberOfProducts--;
-//            System.out.println("Produsul a fost sters din lista");
-            return true;
+
+        if (numberOfProducts == 0) {
+            System.out.println("Nu sunt produse in lista");
+            return false;
+        }
+        Product productToDelete = null;
+        for (int i = 0; i < numberOfProducts; i++) {
+            if (products[i].name.equals(name)) {
+                productToDelete = products[i];
+
+            }
+
+            if (productToDelete != null) {
+                for (int j = i; j < numberOfProducts - 1 ; j++) {
+                    products[j] = products[j + 1];
+                }
+                numberOfProducts--;
+                System.out.println("Produsul " + productToDelete.name + " a fost sters din lista");
+                return true;
+
+            }
 
 
         }
-
-
-
-
+        System.out.println("Produsul nu se afla in lista");
+        return false;
     }
+}
+
+
+
+
+
+
+
 
 
 

@@ -44,10 +44,17 @@ public class CaloriesCounter {
                 System.out.println("Proteine:");
                 double proteins = scanner.nextDouble();
 
-
                 Product newProduct = new Product(name, fats, carbs, proteins);
-                productCatalog.addProduct(newProduct);
-               // productCatalog.printProducts();
+                boolean result = productCatalog.addProduct(newProduct);
+                if (result){
+                    System.out.println("Produsul " + newProduct.name + " a fost adaugat in lista");
+                    System.out.println(Product.computeCalories(fats,carbs,proteins)+ " calorii");
+
+                }else {
+                    System.out.println("Produsul " + newProduct.name + " nu poate fi adagat in lista");
+                }
+
+
                 break;
 
             case 2:
@@ -59,8 +66,7 @@ public class CaloriesCounter {
                 carbs = scanner.nextDouble();
                 System.out.println("Proteine:");
                 proteins = scanner.nextDouble();
-                Product product = new Product(name, fats, carbs, proteins);
-                System.out.println(product);
+                System.out.println(Product.computeCalories(fats,carbs,proteins));
                 break;
             case 3:
                 productCatalog.printProducts();
@@ -68,13 +74,24 @@ public class CaloriesCounter {
             case 4:
                 System.out.println("Nume: ");
                 name = scanner.next();
-                productCatalog.deleteProduct(name);
+                boolean deleteResult = productCatalog.deleteProduct(name);
+                if (deleteResult){
+                    System.out.println("Produsul " + name+ " a fost sters din lista");
+
+                }else{
+                    System.out.println("Produsul " + name+ " nu se afla in lista");
+                }
                 break;
             case 5:
                 System.out.println("Nume produs: ");
                 name = scanner.next();
                 Product product1 = productCatalog.getProductByName(name);
-                System.out.println(product1);
+                if (product1 == null){
+                    System.out.println("Produsul" + name + " nu se afla in lista");
+                }else {
+                    System.out.println(product1);
+
+                }
                 break;
             case 6:
                 System.out.println("Exit");
